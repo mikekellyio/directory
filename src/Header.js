@@ -51,13 +51,13 @@ export default class Header extends Component {
           >
             <div className="navbar-nav mr-auto">
               {currentUser && (
-                <NavLink exact className="nav-item nav-link" to="/search">
-                  Find Family
+                <NavLink className="nav-item nav-link" to="/directory">
+                  Families
                 </NavLink>
               )}
               {currentUser && (
-                <NavLink className="nav-item nav-link" to="/directory">
-                  Families
+                <NavLink exact className="nav-item nav-link" to="/search">
+                  Find Family
                 </NavLink>
               )}
               {!currentUser && <SignedOut />}
