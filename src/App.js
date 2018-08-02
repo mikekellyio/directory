@@ -48,11 +48,13 @@ class App extends Component {
           <Header {...this.props} />
           <section>
             <Switch>
-              <Route
-                exact
-                path="/login"
-                render={props => <Login {...props} />}
-              />
+              {!currentUser && (
+                <Route
+                  exact
+                  path="/login"
+                  render={props => <Login {...props} />}
+                />
+              )}
               {currentUser && (
                 <Route
                   exact
@@ -79,9 +81,7 @@ class App extends Component {
                   )}
                 />
               )}
-              {currentUser && (
-                <Route exact path="/" render={() => <p>Welcome!</p>} />
-              )}
+              {currentUser && <Redirect to="/directory" />}
               {!currentUser && <Redirect to="/login" />}
             </Switch>
           </section>

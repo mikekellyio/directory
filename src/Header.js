@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-import SignedIn from "./components/SignedIn";
 import SignedOut from "./components/SignedOut";
 import "animate.css";
+import logo from "./logo.svg";
 
 export default class Header extends Component {
   static propTypes = {
@@ -29,6 +29,7 @@ export default class Header extends Component {
       <header>
         <nav className="navbar navbar-expand-md navbar-light bg-light">
           <Link className="navbar-brand" to="/">
+            <img src={logo} alt="logo" className="logo" />
             MBC-L Directory
           </Link>
           <button

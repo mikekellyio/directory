@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import firebase from "../firebase";
 //import firebaseui from "firebaseui";
 import { FirebaseAuth } from "react-firebaseui";
 
 export default class Login extends Component {
-  static propTypes = {
-    prop: PropTypes
-  };
+  static propTypes = {};
 
   uiConfig = {
     // Popup signin flow rather than redirect flow.
