@@ -2,11 +2,12 @@ import "../css/Families.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FamilyCard from "./FamilyCard";
+import sortBy from "sort-by";
 
 export default class Families extends Component {
   static propTypes = {
     families: PropTypes.array,
-    emit: PropTypes.func
+    emit: PropTypes.func.isRequired
   };
 
   componentWillMount() {
@@ -18,7 +19,8 @@ export default class Families extends Component {
   };
 
   render() {
-    var families = this.props.families.map(family => (
+    var sortedFamilies = this.props.families.sort(sortBy("lastName"));
+    var families = sortedFamilies.map(family => (
       <FamilyCard family={family} key={family.id} />
     ));
     return (

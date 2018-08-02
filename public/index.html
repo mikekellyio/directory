@@ -21,7 +21,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>It's Gametime</title>
+  <title>MBC-L Directory</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116555595-1"></script>
@@ -32,6 +32,16 @@
 
     gtag('config', 'UA-116555595-1');
   </script>
+  <style media="print">
+    @media print {
+      .families--component .card-deck .card {
+        page-break-inside: avoid;
+      }
+      .families--component .card-deck:nth-child(9n) {
+        page-break-after: always;
+      }
+    }
+  </style>
 </head>
 
 <body>

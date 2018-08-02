@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import firebase from "./firebase";
 import Header from "./Header";
+import SearchFamilies from "./components/SearchFamilies";
 import Families from "./components/Families";
 import Login from "./components/Login";
 import debug from "debug";
@@ -51,6 +52,17 @@ class App extends Component {
                 path="/directory"
                 render={props => (
                   <Families
+                    {...this.props}
+                    {...props}
+                    families={Object.values(store.families)}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/search"
+                render={props => (
+                  <SearchFamilies
                     {...this.props}
                     {...props}
                     families={Object.values(store.families)}
