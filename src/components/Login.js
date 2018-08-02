@@ -25,7 +25,6 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <p>Please sign-in:</p>
         <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
       </div>
     );

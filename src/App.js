@@ -1,7 +1,12 @@
 import "./css/App.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import firebase from "./firebase";
 import Header from "./Header";
 import SearchFamilies from "./components/SearchFamilies";
@@ -35,6 +40,7 @@ class App extends Component {
 
   render() {
     const store = this.props.store;
+    var currentUser = this.props.store.currentUser;
 
     return (
       <Router>
@@ -47,30 +53,36 @@ class App extends Component {
                 path="/login"
                 render={props => <Login {...props} />}
               />
-              <Route
-                exact
-                path="/directory"
-                render={props => (
-                  <Families
-                    {...this.props}
-                    {...props}
-                    families={Object.values(store.families)}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/search"
-                render={props => (
-                  <SearchFamilies
-                    {...this.props}
-                    {...props}
-                    families={Object.values(store.families)}
-                  />
-                )}
-              />
-
-              <Route exact path="/" render={() => <p>Welcome!</p>} />
+              {currentUser && (
+                <Route
+                  exact
+                  path="/directory"
+                  render={props => (
+                    <Families
+                      {...this.props}
+                      {...props}
+                      families={Object.values(store.families)}
+                    />
+                  )}
+                />
+              )}
+              {currentUser && (
+                <Route
+                  exact
+                  path="/search"
+                  render={props => (
+                    <SearchFamilies
+                      {...this.props}
+                      {...props}
+                      families={Object.values(store.families)}
+                    />
+                  )}
+                />
+              )}
+              {currentUser && (
+                <Route exact path="/" render={() => <p>Welcome!</p>} />
+              )}
+              {!currentUser && <Redirect to="/login" />}
             </Switch>
           </section>
         </div>
