@@ -1,5 +1,8 @@
 import State from "../State";
 import firebase from "../firebase";
+import debug from "debug";
+
+var log = debug("mbcl-directory:reactions:families");
 
 var db = firebase.database();
 
@@ -36,6 +39,7 @@ State.on("families:new", family => {
   })
   .on("families:subscribe", () => {
     if (!listeners["/families"]) {
+      log("attaching events to /families");
       var familiesRef = db.ref("/families");
       familiesRef.on("child_added", data => {
         State.emit("families:added", data.key, data.val());

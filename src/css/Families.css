@@ -1,5 +1,7 @@
-.families--component .card-deck .card {
+.families--component .card-deck .card,
+.orphans--component .card-deck .card {
   min-width: 18rem;
   margin-bottom: 1em; }
-  .families--component .card-deck .card .card-img-top {
+  .families--component .card-deck .card .card-img-top,
+  .orphans--component .card-deck .card .card-img-top {
     cursor: pointer; }

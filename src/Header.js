@@ -60,6 +60,11 @@ export default class Header extends Component {
                   Find Family
                 </NavLink>
               )}
+              {currentUser && (
+                <NavLink exact className="nav-item nav-link" to="/orphans">
+                  Unattached Pictures
+                </NavLink>
+              )}
               {!currentUser && <SignedOut />}
             </div>
           </div>

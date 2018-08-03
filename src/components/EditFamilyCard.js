@@ -55,7 +55,7 @@ export default class EditFamilyCard extends Component {
     return (
       <div className="card col-mb-4">
         <FamilyPicture
-          photo={family.photo}
+          photo={this.state.photo || "#N/A"}
           defaultPhoto={family.defaultPhoto}
           onChange={this.updateDefaultPhoto}
         />

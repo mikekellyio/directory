@@ -10,14 +10,6 @@ export default class Families extends Component {
     emit: PropTypes.func.isRequired
   };
 
-  componentWillMount() {
-    this.props.emit("families:subscribe");
-  }
-
-  componentWillUnmount = () => {
-    this.props.emit("families:unsubscribe");
-  };
-
   render() {
     var sortedFamilies = this.props.families.sort(sortBy("lastName"));
     var families = sortedFamilies.map(family => (

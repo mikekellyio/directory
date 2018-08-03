@@ -1,5 +1,6 @@
 const initial = {
-  families: {}
+  families: {},
+  orphans: {}
 };
 
 export default initial;

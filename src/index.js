@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import "./reactions/crud";
 import "./reactions/families";
+import "./reactions/orphans";
 
 const rootEl = document.getElementById("root");
 
