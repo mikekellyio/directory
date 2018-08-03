@@ -101,8 +101,15 @@ class FamilyPicture extends Component {
   };
 
   render() {
-    var url = `http://s3.amazonaws.com/mbcl-2018-directory/web/${this.photo()}`;
+    var url = `https://s3.amazonaws.com/mbcl-2018-directory/web/${this.photo()}`;
 
-    return <img className="card-img-top" src={url} alt="family" />;
+    return (
+      <img
+        className="card-img-top"
+        src={url}
+        alt="family"
+        onClick={this.incrementIndex}
+      />
+    );
   }
 }
