@@ -10,7 +10,7 @@ export default class FamilyCard extends Component {
     var family = this.props.family;
     return (
       <div className="card col-mb-4">
-        <FamilyPicture photo={family.photo} />
+        <FamilyPicture family={family} />
         <div className="card-body">
           <h5 className="card-title">
             {family.firstName} {family.lastName} <br />
@@ -66,17 +66,42 @@ class FamilyAddress extends Component {
 
 class FamilyPicture extends Component {
   static propTypes = {
-    photo: PropTypes.string
+    family: PropTypes.object
+  };
+
+  extensions = ["A", "B", "C"];
+
+  constructor(props) {
+    super(props);
+
+    this.state = { photoIndex: null };
+  }
+
+  incrementIndex = () => {
+    this.setState({
+      photoIndex: this.state.photoIndex === null ? 0 : this.state.photoIndex + 1
+    });
+  };
+
+  photo = () => {
+    if (this.notFound()) return "not-found.jpg";
+    if (this.state.photoIndex === null)
+      return (
+        this.props.family.defaultPhoto ||
+        `${this.props.family.photo.split(".")[0]}A.jpg`
+      );
+
+    return `${this.props.family.photo.split(".")[0]}${
+      this.extensions[this.state.photoIndex % 3]
+    }.jpg`;
+  };
+
+  notFound = () => {
+    return this.props.family.photo === "#N/A";
   };
 
   render() {
-    var photo = this.props.photo;
-    var baseFilename = photo.split(".")[0];
-    if (photo.split(".")[1] === "jpg") {
-      var url = `http://s3.amazonaws.com/mbcl-2018-directory/web/${baseFilename}A.jpg`;
-    } else {
-      url = `http://s3.amazonaws.com/mbcl-2018-directory/web/not-found.jpg`;
-    }
+    var url = `http://s3.amazonaws.com/mbcl-2018-directory/web/${this.photo()}`;
 
     return <img className="card-img-top" src={url} alt="family" />;
   }
