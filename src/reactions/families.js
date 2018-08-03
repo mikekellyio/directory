@@ -14,11 +14,11 @@ State.on("families:new", family => {
   return State.emit("objects:new", "/families", family, key);
 })
   .on("families:edit", family => {
-    State.emit("objects:edit", "/families", family);
+    return State.emit("objects:edit", "/families", family);
   })
   .on("family:update", (key, data) => {
     var family = State.get().families[key].toJS();
-    State.emit("families:edit", family);
+    return State.emit("families:edit", family);
   })
   .on("family:subscribe", key => {
     if (!listeners["/families/" + key]) {

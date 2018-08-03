@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import firebase from "./firebase";
 import Header from "./Header";
+import EditFamilyCard from "./components/EditFamilyCard";
 import SearchFamilies from "./components/SearchFamilies";
 import Families from "./components/Families";
 import Login from "./components/Login";
@@ -65,6 +66,21 @@ class App extends Component {
                       {...props}
                       families={Object.values(store.families)}
                     />
+                  )}
+                />
+              )}
+              {currentUser && (
+                <Route
+                  exact
+                  path="/family/:id"
+                  render={props => (
+                    <div className="card-deck mb-3">
+                      <EditFamilyCard
+                        {...this.props}
+                        {...props}
+                        family={store.families[props.match.params.id]}
+                      />
+                    </div>
                   )}
                 />
               )}
