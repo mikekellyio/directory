@@ -34,6 +34,10 @@ class App extends Component {
     });
   }
 
+  componentWillMount() {
+    this.props.emit("families:subscribe");
+  }
+
   // Make sure we un-register Firebase observers when the component unmounts.
   componentWillUnmount() {
     this.unregisterAuthObserver();
