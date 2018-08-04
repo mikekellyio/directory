@@ -49,8 +49,7 @@ export default class Header extends Component {
           </button>
           <div
             className={
-              "collapse navbar-collapse " +
-              (this.state.collapsed ? "" : "animated slideInDown show")
+              "collapse navbar-collapse " + (this.state.collapsed ? "" : "show")
             }
             id="navbarSupportedContent"
           >
