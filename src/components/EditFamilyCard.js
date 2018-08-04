@@ -60,18 +60,17 @@ export default class EditFamilyCard extends Component {
           onChange={this.updateDefaultPhoto}
         />
         <div className="card-body">
-          {family.photo === "#N/A" && (
-            <div className="form-group">
-              <label htmlFor="photo">Photo filename</label>
-              <input
-                type="text"
-                className="form-control mb-2"
-                name="photo"
-                placeholder={"e.g. 2018-4-1-20265.jpg"}
-                onChange={this.updateVal}
-              />
-            </div>
-          )}
+          <div className="form-group">
+            <label htmlFor="photo">Photo filename</label>
+            <input
+              type="text"
+              className="form-control mb-2"
+              name="photo"
+              defaultValue={family.photo === "#N/A" ? "" : family.photo}
+              placeholder={"e.g. 2018-4-1-20265.jpg"}
+              onChange={this.updateVal}
+            />
+          </div>
           <label>Name</label>
           <div className="form-inline">
             <label className="sr-only" htmlFor="firstName">

@@ -11,7 +11,9 @@ export default class Families extends Component {
   };
 
   render() {
-    var sortedFamilies = this.props.families.sort(sortBy("lastName"));
+    var sortedFamilies = this.props.families.sort(
+      sortBy("lastName", "firstName")
+    );
     var families = sortedFamilies.map(family => (
       <FamilyCard family={family} key={family.id} />
     ));

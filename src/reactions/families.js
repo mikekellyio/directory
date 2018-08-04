@@ -7,6 +7,7 @@ var log = debug("mbcl-directory:reactions:families");
 var db = firebase.database();
 
 var listeners = {};
+window.listeners = listeners;
 
 State.on("families:new", family => {
   var key = db
@@ -60,6 +61,10 @@ State.on("families:new", family => {
     }
   })
   .on("families:added", (key, val) => {
+    if (val) val.id = key;
+    State.get().families.set(key, val);
+  })
+  .on("families:updated", (key, val) => {
     if (val) val.id = key;
     State.get().families.set(key, val);
   })
