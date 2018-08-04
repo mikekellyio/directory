@@ -23,6 +23,11 @@ export default class Header extends Component {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
+  collapse = ev => {
+    ev.preventDefault();
+    this.setState({ collapsed: true });
+  };
+
   render() {
     var currentUser = this.props.store.currentUser;
     return (
@@ -49,7 +54,7 @@ export default class Header extends Component {
             }
             id="navbarSupportedContent"
           >
-            <div className="navbar-nav mr-auto">
+            <div className="navbar-nav mr-auto" onClick={this.collapse}>
               {currentUser && (
                 <NavLink className="nav-item nav-link" to="/directory">
                   Families
