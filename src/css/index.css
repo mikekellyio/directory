@@ -1,6 +1,9 @@
 html {
   font-size: 14px; }
 
+#root > .container {
+  padding-top: 70px; }
+
 .navbar-brand img.logo {
   height: 2rem;
   margin-top: -3px; }

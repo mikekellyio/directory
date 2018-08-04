@@ -32,7 +32,7 @@ export default class Header extends Component {
     var currentUser = this.props.store.currentUser;
     return (
       <header>
-        <nav className="navbar navbar-expand-md navbar-light bg-light">
+        <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
           <Link className="navbar-brand" to="/">
             <img src={logo} alt="logo" className="logo" />
             MBC-L Directory
