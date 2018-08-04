@@ -84,7 +84,7 @@ class App extends Component {
                       {...this.props}
                       {...props}
                       orphans={Object.values(store.orphans).filter(
-                        orphan => orphan.orphaned
+                        orphan => orphan.attachedByFile === "FALSE"
                       )}
                     />
                   )}

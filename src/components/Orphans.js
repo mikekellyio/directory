@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import sortBy from "sort-by";
 import FamilyPicture from "./FamilyPicture";
+import { Link } from "react-router-dom";
 
 export default class Orphans extends Component {
   static propTypes = {
@@ -37,6 +38,13 @@ class OrphanCard extends Component {
             <small>{orphan.file}</small>
           </h5>
         </div>
+        {orphan.attachedByEmail === "TRUE" && (
+          <div className="card-footer text-muted">
+            <Link className="card-link" to={`/family/${orphan.famIdByEmail}`}>
+              Attached Family by Email address
+            </Link>
+          </div>
+        )}
       </div>
     );
   }
