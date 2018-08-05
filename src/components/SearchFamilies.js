@@ -10,7 +10,7 @@ export default class SearchFamilies extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { families: [], query: "" };
+    this.state = { families: this.props.families, query: "" };
 
     var options = {
       shouldSort: true,
@@ -36,7 +36,7 @@ export default class SearchFamilies extends Component {
       );
       this.setState({ families: families });
     } else {
-      this.setState({ families: [] });
+      this.setState({ families: this.props.families });
     }
   };
 

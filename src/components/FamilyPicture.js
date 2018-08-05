@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import LazyLoad from "react-lazyload";
+import LazyLoad from "react-lazy-load";
 
 export default class FamilyPicture extends Component {
   static propTypes = {
@@ -45,7 +45,7 @@ export default class FamilyPicture extends Component {
     var url = `https://s3.amazonaws.com/mbcl-2018-directory/web/${this.photo()}`;
 
     return (
-      <LazyLoad once offset={100}>
+      <LazyLoad offset={100}>
         <img
           className="card-img-top"
           src={url}
