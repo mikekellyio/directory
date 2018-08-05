@@ -5,7 +5,8 @@ import Fuse from "fuse.js";
 
 export default class SearchFamilies extends Component {
   static propTypes = {
-    families: PropTypes.array
+    families: PropTypes.array,
+    showSearch: PropTypes.bool
   };
 
   constructor(props) {
@@ -42,16 +43,21 @@ export default class SearchFamilies extends Component {
 
   render() {
     var families = this.state.families;
-    return (
-      <div>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Search..."
-          onChange={this.search}
-        />
-        <Families families={families} emit={this.props.emit} />
-      </div>
-    );
+    if (this.props.showSearch) {
+      return (
+        <div className="search-families--component">
+          <div className="container fixed-top">
+            <input
+              className="search form-control"
+              type="text"
+              placeholder="Search..."
+              onChange={this.search}
+            />
+          </div>
+
+          <Families families={families} emit={this.props.emit} />
+        </div>
+      );
+    } else return <Families families={families} emit={this.props.emit} />;
   }
 }

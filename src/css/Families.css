@@ -5,3 +5,9 @@
   .families--component .card-deck .card .card-img-top,
   .orphans--component .card-deck .card .card-img-top {
     cursor: pointer; }
+
+.search-families--component .search {
+  margin-top: 60px; }
+
+.search-families--component .families--component {
+  margin-top: 40px; }

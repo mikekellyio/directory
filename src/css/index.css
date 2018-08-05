@@ -4,6 +4,9 @@ html {
 #root > .container {
   padding-top: 70px; }
 
+header .navbar.fixed-top {
+  z-index: 1031; }
+
 .navbar-brand img.logo {
   height: 2rem;
   margin-top: -3px; }

@@ -61,7 +61,7 @@ export default class Header extends Component {
               )}
               {currentUser && (
                 <NavLink exact className="nav-item nav-link" to="/search">
-                  Find Family
+                  Search
                 </NavLink>
               )}
               {currentUser && (

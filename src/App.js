@@ -114,6 +114,7 @@ class App extends Component {
                       {...this.props}
                       {...props}
                       families={Object.values(store.families)}
+                      showSearch
                     />
                   )}
                 />
