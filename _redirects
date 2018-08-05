@@ -1,4 +1,5 @@
 # Redirect default Netlify subdomain to primary domain
-http://sleepy-kowalevski-ee4e45.netlify.com/* http://mbcldirectory.org/:splat 301!
+http://sleepy-kowalevski-ee4e45.netlify.com/* https://mbcldirectory.org/:splat 301!
 https://sleepy-kowalevski-ee4e45.netlify.com/* https://mbcldirectory.org/:splat 301!
+http://mbcldirectory.org/* https://mbcldirectory.org/:splat 301!
 /*    /index.html   200
