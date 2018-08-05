@@ -1,5 +1,6 @@
 import "../css/Families.css";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import FamilyCard from "./FamilyCard";
 import sortBy from "sort-by";
@@ -19,6 +20,7 @@ export default class Families extends Component {
     ));
     return (
       <div className="families--component">
+        <Link to="/family/new">Create New Family</Link>
         {families.length > 0 ? (
           <div className="card-deck mb-3">{families}</div>
         ) : (

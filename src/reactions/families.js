@@ -24,13 +24,17 @@ State.on("families:new", family => {
     var family = State.get().families[key].toJS();
     return State.emit("families:edit", family);
   })
+  .on("family:remove", key => {
+    var familiesRef = firebase.database().ref("families/" + key);
+    return familiesRef.remove();
+  })
   .on("family:subscribe", key => {
     if (!listeners["/families/" + key]) {
-      var gameRef = firebase.database().ref("families/" + key);
-      gameRef.on("value", snapshot => {
+      var familiesRef = firebase.database().ref("families/" + key);
+      familiesRef.on("value", snapshot => {
         State.emit("families:changed", key, snapshot.val());
       });
-      listeners["/families/" + key] = gameRef;
+      listeners["/families/" + key] = familiesRef;
     }
   })
   .on("family:unsubscribe", key => {

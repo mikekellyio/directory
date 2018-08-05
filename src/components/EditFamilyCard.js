@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import queryString from "query-string";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import faTrash from "@fortawesome/fontawesome-pro-solid/faTrash";
 
 import { Link } from "react-router-dom";
 import FamilyPicture from "./FamilyPicture";
@@ -18,7 +21,8 @@ export default class EditFamilyCard extends Component {
 
   updateVal = ev => {
     var state = {};
-    state[ev.target.name] = ev.target.value;
+    state[ev.target.name] =
+      ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
     this.setState(state);
   };
 
@@ -28,14 +32,27 @@ export default class EditFamilyCard extends Component {
 
   update = ev => {
     ev.preventDefault();
-    this.props.emit("families:edit", this.state).then(() => {
-      this.props.history.goBack();
-    });
+    this.props
+      .emit(this.state.id ? "families:edit" : "families:new", this.state)
+      .then(() => {
+        this.props.history.goBack();
+      });
+  };
+
+  remove = ev => {
+    ev.preventDefault();
+    if (this.state.id)
+      this.props.emit("family:remove", this.state.id).then(() => {
+        this.props.history.goBack();
+      });
   };
 
   defaultState = () => {
-    return (
-      this.props.family || {
+    var params = queryString.parse(this.props.location.search);
+
+    var defaultVals = Object.assign(
+      {
+        active: true,
         firstName: "",
         lastName: "",
         children: "",
@@ -46,12 +63,14 @@ export default class EditFamilyCard extends Component {
         phone: "",
         email: "",
         photo: "#N/A"
-      }
+      },
+      params
     );
+    return Object.assign(defaultVals, this.props.family);
   };
 
   render() {
-    var family = this.props.family;
+    var family = this.state;
     return (
       <div className="card col-mb-4">
         <FamilyPicture
@@ -95,6 +114,18 @@ export default class EditFamilyCard extends Component {
               placeholder={family.lastName || "e.g. Doe"}
               onChange={this.updateVal}
             />
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={this.state.active === undefined || this.state.active}
+                name="active"
+                onChange={this.updateVal}
+              />
+              <label className="form-check-label" htmlFor="active">
+                Active Member
+              </label>
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="children">Children</label>
@@ -178,14 +209,24 @@ export default class EditFamilyCard extends Component {
           <Link className="card-link" to={`/directory}`}>
             Cancel
           </Link>
-          <div className="col-sm-1 float-right">
+
+          <div className="col-sm-3 float-right">
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary  float-right"
               onClick={this.update}
             >
-              Update
+              {this.state.id ? "Update" : "Create"}
             </button>
+            {this.state.id && (
+              <button
+                type="button"
+                className="btn btn-link float-right"
+                onClick={this.remove}
+              >
+                <FontAwesomeIcon icon={faTrash} /> Delete
+              </button>
+            )}
           </div>
         </div>
       </div>
