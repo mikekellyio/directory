@@ -4,7 +4,7 @@ html {
 #root > .container {
   padding-top: 70px; }
 
-header .navbar.fixed-top {
+header .container.fixed-top {
   z-index: 1031; }
 
 .navbar-brand img.logo {

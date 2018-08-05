@@ -32,47 +32,50 @@ export default class Header extends Component {
     var currentUser = this.props.store.currentUser;
     return (
       <header>
-        <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
-          <Link className="navbar-brand" to="/">
-            <img src={logo} alt="logo" className="logo" />
-            MBC-L Directory
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            onClick={this.toggleCollapse}
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div
-            className={
-              "collapse navbar-collapse " + (this.state.collapsed ? "" : "show")
-            }
-            id="navbarSupportedContent"
-          >
-            <div className="navbar-nav mr-auto" onClick={this.collapse}>
-              {currentUser && (
-                <NavLink className="nav-item nav-link" to="/directory">
-                  Families
-                </NavLink>
-              )}
-              {currentUser && (
-                <NavLink exact className="nav-item nav-link" to="/search">
-                  Search
-                </NavLink>
-              )}
-              {currentUser && (
-                <NavLink exact className="nav-item nav-link" to="/orphans">
-                  Unattached Pictures
-                </NavLink>
-              )}
-              {!currentUser && <SignedOut />}
+        <div className="container fixed-top">
+          <nav className="navbar navbar-expand-md navbar-light bg-light">
+            <Link className="navbar-brand" to="/">
+              <img src={logo} alt="logo" className="logo" />
+              MBC-L Directory
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onClick={this.toggleCollapse}
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div
+              className={
+                "collapse navbar-collapse " +
+                (this.state.collapsed ? "" : "show")
+              }
+              id="navbarSupportedContent"
+            >
+              <div className="navbar-nav mr-auto" onClick={this.collapse}>
+                {currentUser && (
+                  <NavLink className="nav-item nav-link" to="/directory">
+                    Families
+                  </NavLink>
+                )}
+                {currentUser && (
+                  <NavLink exact className="nav-item nav-link" to="/search">
+                    Search
+                  </NavLink>
+                )}
+                {currentUser && (
+                  <NavLink exact className="nav-item nav-link" to="/orphans">
+                    Unattached Pictures
+                  </NavLink>
+                )}
+                {!currentUser && <SignedOut />}
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </header>
     );
   }
