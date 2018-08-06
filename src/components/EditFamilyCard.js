@@ -73,7 +73,7 @@ export default class EditFamilyCard extends Component {
   render() {
     var family = this.state;
     return (
-      <div className="card col-mb-4">
+      <div className="edit-family--component card col-mb-4">
         <FamilyPicture
           photo={this.state.photo || "#N/A"}
           defaultPhoto={family.defaultPhoto}
@@ -207,28 +207,32 @@ export default class EditFamilyCard extends Component {
           </div>
         </div>
         <div className="card-footer text-muted">
-          <Link className="card-link" to={`/directory}`}>
-            Cancel
-          </Link>
+          <div className="row justify-content-between">
+            <span className="col">
+              <Link className="card-link" to={`/directory}`}>
+                Cancel
+              </Link>
+            </span>
 
-          <div className="col-sm-3 float-right">
-            <button
-              type="submit"
-              className="btn btn-primary  float-right"
-              onClick={this.update}
-            >
-              {this.state.id ? "Update" : "Create"}
-            </button>
-            {this.state.id &&
-              !this.props.family.active && (
-                <button
-                  type="button"
-                  className="btn btn-link float-right"
-                  onClick={this.remove}
-                >
-                  <FontAwesomeIcon icon={faTrash} /> Delete
-                </button>
-              )}
+            <div className="col-md-2 col-sm-4">
+              <button
+                type="submit"
+                className="btn btn-primary  "
+                onClick={this.update}
+              >
+                {this.state.id ? "Update" : "Create"}
+              </button>
+              {this.state.id &&
+                !this.props.family.active && (
+                  <button
+                    type="button"
+                    className="btn btn-link"
+                    onClick={this.remove}
+                  >
+                    <FontAwesomeIcon icon={faTrash} /> Delete
+                  </button>
+                )}
+            </div>
           </div>
         </div>
       </div>

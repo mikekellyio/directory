@@ -12,3 +12,21 @@
 
 .search-families--component .families--component {
   margin-top: 40px; }
+
+.edit-family--component input[type="color"],
+.edit-family--component input[type="date"],
+.edit-family--component input[type="datetime"],
+.edit-family--component input[type="datetime-local"],
+.edit-family--component input[type="email"],
+.edit-family--component input[type="month"],
+.edit-family--component input[type="number"],
+.edit-family--component input[type="password"],
+.edit-family--component input[type="search"],
+.edit-family--component input[type="tel"],
+.edit-family--component input[type="text"],
+.edit-family--component input[type="time"],
+.edit-family--component input[type="url"],
+.edit-family--component input[type="week"],
+.edit-family--component select:focus,
+.edit-family--component textarea {
+  font-size: 16px; }
