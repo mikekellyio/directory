@@ -66,6 +66,7 @@ State.on("families:new", family => {
   })
   .on("families:added", (key, val) => {
     if (val) val.id = key;
+    if (val.active === undefined) val.active = true;
     State.get().families.set(key, val);
   })
   .on("families:updated", (key, val) => {

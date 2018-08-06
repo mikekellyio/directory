@@ -218,15 +218,16 @@ export default class EditFamilyCard extends Component {
             >
               {this.state.id ? "Update" : "Create"}
             </button>
-            {this.state.id && (
-              <button
-                type="button"
-                className="btn btn-link float-right"
-                onClick={this.remove}
-              >
-                <FontAwesomeIcon icon={faTrash} /> Delete
-              </button>
-            )}
+            {this.state.id &&
+              !this.props.family.active && (
+                <button
+                  type="button"
+                  className="btn btn-link float-right"
+                  onClick={this.remove}
+                >
+                  <FontAwesomeIcon icon={faTrash} /> Delete
+                </button>
+              )}
           </div>
         </div>
       </div>
