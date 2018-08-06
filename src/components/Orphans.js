@@ -51,7 +51,7 @@ class OrphanCard extends Component {
             </Link>
           ) : (
             <Link className="card-link" to={`/family/new?${familyParams}`}>
-              Create New Family
+              Add as New Family
             </Link>
           )}
         </div>

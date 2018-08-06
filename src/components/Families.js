@@ -34,7 +34,7 @@ export default class Families extends Component {
         <div className="row justify-content-between">
           <span className="col-sm-8">
             <Link className="btn btn-link" to="/family/new">
-              Create New Family
+              Add New Family
             </Link>
           </span>
           <span className="col-lg-2 col-sm-3">
