@@ -28,13 +28,20 @@ export default class Header extends Component {
     this.setState({ collapsed: true });
   };
 
+  scrollToTop = () => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   render() {
     var currentUser = this.props.store.currentUser;
     return (
       <header>
         <div className="container fixed-top">
           <nav className="navbar navbar-expand-md navbar-light bg-light">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/" onClick={this.scrollToTop}>
               <img src={logo} alt="logo" className="logo" />
               MBC-L Directory
             </Link>
