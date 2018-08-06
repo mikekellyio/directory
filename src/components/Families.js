@@ -31,19 +31,21 @@ export default class Families extends Component {
     ));
     return (
       <div className="families--component">
-        <div className="row">
-          <span className="col">
+        <div className="row justify-content-between">
+          <span className="col-sm-8">
             <Link className="btn btn-link" to="/family/new">
               Create New Family
             </Link>
           </span>
-          <button
-            className="btn btn-link col-2"
-            type="button"
-            onClick={this.toggleActive}
-          >
-            View {this.state.showActive ? "Inactive" : "Active"}
-          </button>
+          <span className="col-lg-2 col-sm-3">
+            <button
+              className="btn btn-link "
+              type="button"
+              onClick={this.toggleActive}
+            >
+              View {this.state.showActive ? "Inactive" : "Active"}
+            </button>
+          </span>
         </div>
         {families.length > 0 ? (
           <div className="card-deck mb-3">{families}</div>

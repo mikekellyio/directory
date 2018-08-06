@@ -45,7 +45,7 @@ export default class SearchFamilies extends Component {
     var families = this.state.families;
     if (this.props.showSearch) {
       return (
-        <div className="search-families--component">
+        <div className="search-families--component" tabIndex="0">
           <div className="container fixed-top">
             <input
               className="search form-control"

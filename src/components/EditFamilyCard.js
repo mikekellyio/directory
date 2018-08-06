@@ -11,7 +11,8 @@ export default class EditFamilyCard extends Component {
   static propTypes = {
     family: PropTypes.object,
     emit: PropTypes.func,
-    history: PropTypes.object
+    history: PropTypes.object,
+    location: PropTypes.object
   };
 
   constructor(props) {
