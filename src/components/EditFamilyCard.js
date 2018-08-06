@@ -194,11 +194,11 @@ export default class EditFamilyCard extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="emailAddress">Email address</label>
+            <label htmlFor="email">Email address</label>
             <input
               type="email"
               className="form-control mb-3 mr-sm-3"
-              name="emailAddress"
+              name="email"
               defaultValue={family.email}
               placeholder={family.email || "e.g. name@example.com"}
               onChange={this.updateVal}
