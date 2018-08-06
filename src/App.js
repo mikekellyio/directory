@@ -49,6 +49,8 @@ class App extends Component {
     const store = this.props.store;
     var currentUser = this.props.store.currentUser;
 
+    var attachedFiles = Object.values(store.families).map(f => f.photo);
+
     return (
       <Router>
         <div className="container">
@@ -84,7 +86,7 @@ class App extends Component {
                       {...this.props}
                       {...props}
                       orphans={Object.values(store.orphans).filter(
-                        orphan => orphan.attachedByFile === "FALSE"
+                        orphan => !attachedFiles.includes(orphan.file)
                       )}
                     />
                   )}
