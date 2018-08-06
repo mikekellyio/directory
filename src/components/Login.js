@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase from "../firebase";
-//import firebaseui from "firebaseui";
+import firebaseui from "firebaseui";
 import { FirebaseAuth } from "react-firebaseui";
 
 export default class Login extends Component {
@@ -11,6 +11,7 @@ export default class Login extends Component {
     signInFlow: "popup",
     // We will display Google as auth providers.
     signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
+    credentialHelper: firebaseui.auth.CredentialHelper.NONE,
     // Sets the `signedIn` state property to `true` once signed in.
     callbacks: {
       signInSuccess: () => {
