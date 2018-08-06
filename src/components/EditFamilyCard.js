@@ -208,20 +208,13 @@ export default class EditFamilyCard extends Component {
         </div>
         <div className="card-footer text-muted">
           <div className="row justify-content-between">
-            <span className="col">
-              <Link className="card-link" to={`/directory}`}>
+            <span className="col-2">
+              <Link className="card-link btn btn-link" to={`/directory}`}>
                 Cancel
               </Link>
             </span>
 
-            <div className="col-md-2 col-sm-4">
-              <button
-                type="submit"
-                className="btn btn-primary  "
-                onClick={this.update}
-              >
-                {this.state.id ? "Update" : "Create"}
-              </button>
+            <div className=" col">
               {this.state.id &&
                 !this.props.family.active && (
                   <button
@@ -232,6 +225,13 @@ export default class EditFamilyCard extends Component {
                     <FontAwesomeIcon icon={faTrash} /> Delete
                   </button>
                 )}
+              <button
+                type="submit"
+                className="btn btn-primary  "
+                onClick={this.update}
+              >
+                {this.state.id ? "Update" : "Create"}
+              </button>
             </div>
           </div>
         </div>
