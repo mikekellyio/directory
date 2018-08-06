@@ -215,7 +215,7 @@ export default class EditFamilyCard extends Component {
             </span>
 
             <div className=" col">
-              {this.state.id &&
+              {this.props.family &&
                 !this.props.family.active && (
                   <button
                     type="button"
