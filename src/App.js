@@ -1,12 +1,7 @@
 import "./css/App.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import firebase from "./firebase";
 import Header from "./Header";
 import EditFamilyCard from "./components/EditFamilyCard";
@@ -15,6 +10,8 @@ import Families from "./components/Families";
 import Orphans from "./components/Orphans";
 import Login from "./components/Login";
 import debug from "debug";
+
+import withTracker from "./withTracker";
 
 var log = debug("mbcl-directory:App");
 
@@ -52,83 +49,81 @@ class App extends Component {
     var attachedFiles = Object.values(store.families).map(f => f.photo);
 
     return (
-      <Router>
-        <div className="container">
-          <Header {...this.props} />
-          <section>
-            <Switch>
-              {!currentUser && (
-                <Route
-                  exact
-                  path="/login"
-                  render={props => <Login {...props} />}
-                />
-              )}
-              {currentUser && (
-                <Route
-                  exact
-                  path="/directory"
-                  render={props => (
-                    <Families
+      <div className="container">
+        <Header {...this.props} />
+        <section>
+          <Switch>
+            {!currentUser && (
+              <Route
+                exact
+                path="/login"
+                render={props => <Login {...props} />}
+              />
+            )}
+            {currentUser && (
+              <Route
+                exact
+                path="/directory"
+                render={props => (
+                  <Families
+                    {...this.props}
+                    {...props}
+                    families={Object.values(store.families)}
+                  />
+                )}
+              />
+            )}
+            {currentUser && (
+              <Route
+                exact
+                path="/orphans"
+                render={props => (
+                  <Orphans
+                    {...this.props}
+                    {...props}
+                    orphans={Object.values(store.orphans).filter(
+                      orphan => !attachedFiles.includes(orphan.file)
+                    )}
+                  />
+                )}
+              />
+            )}
+            {currentUser && (
+              <Route
+                exact
+                path="/family/:id"
+                render={props => (
+                  <div className="card-deck mb-3">
+                    <EditFamilyCard
                       {...this.props}
                       {...props}
-                      families={Object.values(store.families)}
+                      family={store.families[props.match.params.id]}
                     />
-                  )}
-                />
-              )}
-              {currentUser && (
-                <Route
-                  exact
-                  path="/orphans"
-                  render={props => (
-                    <Orphans
-                      {...this.props}
-                      {...props}
-                      orphans={Object.values(store.orphans).filter(
-                        orphan => !attachedFiles.includes(orphan.file)
-                      )}
-                    />
-                  )}
-                />
-              )}
-              {currentUser && (
-                <Route
-                  exact
-                  path="/family/:id"
-                  render={props => (
-                    <div className="card-deck mb-3">
-                      <EditFamilyCard
-                        {...this.props}
-                        {...props}
-                        family={store.families[props.match.params.id]}
-                      />
-                    </div>
-                  )}
-                />
-              )}
-              {currentUser && (
-                <Route
-                  exact
-                  path="/search"
-                  render={props => (
-                    <SearchFamilies
-                      {...this.props}
-                      {...props}
-                      families={Object.values(store.families)}
-                      showSearch
-                    />
-                  )}
-                />
-              )}
-              {currentUser && <Redirect to="/directory" />}
-              {!currentUser && <Redirect to="/login" />}
-            </Switch>
-          </section>
-        </div>
-      </Router>
+                  </div>
+                )}
+              />
+            )}
+            {currentUser && (
+              <Route
+                exact
+                path="/search"
+                render={props => (
+                  <SearchFamilies
+                    {...this.props}
+                    {...props}
+                    families={Object.values(store.families)}
+                    showSearch
+                  />
+                )}
+              />
+            )}
+            {currentUser && <Redirect to="/directory" />}
+            {!currentUser && <Redirect to="/login" />}
+          </Switch>
+        </section>
+      </div>
     );
   }
 }
 
-export default App;
+export default withTracker(App);
