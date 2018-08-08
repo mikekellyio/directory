@@ -1,5 +1,11 @@
 import State from "../State";
+import ReactGA from "react-ga";
 
 State.on("login:success", currentUser => {
-  State.get().set("currentUser", currentUser.toJSON());
+  currentUser = currentUser.toJSON();
+  ReactGA.set({
+    email: currentUser.email,
+    displayName: currentUser.displayName
+  });
+  State.get().set("currentUser", currentUser);
 });
