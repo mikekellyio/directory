@@ -23,7 +23,12 @@ export default class EditFamilyCard extends Component {
   updateVal = ev => {
     var state = {};
     state[ev.target.name] =
-      ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
+      ev.target.type === "checkbox"
+        ? ev.target.checked
+        : ev.target.type === "file"
+          ? ev.target.files
+          : ev.target.value;
+
     this.setState(state);
   };
 
@@ -89,6 +94,15 @@ export default class EditFamilyCard extends Component {
               defaultValue={family.photo === "#N/A" ? "" : family.photo}
               placeholder={"e.g. 2018-4-1-20265.jpg"}
               onChange={this.updateVal}
+            />
+          </div>
+          <div className="form-group fileupload">
+            <label htmlFor="customphoto">Upload Photo:</label>
+            <input
+              type="file"
+              id="customphoto"
+              name="customphoto"
+              accept="image/png, image/jpeg"
             />
           </div>
           <label>Name</label>
