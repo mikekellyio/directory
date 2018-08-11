@@ -42,7 +42,7 @@ export default class FamilyPicture extends Component {
   };
 
   render() {
-    var url = `https://s3.amazonaws.com/mbcl-2018-directory/web/${this.photo()}`;
+    var url = `https://s3.amazonaws.com/mbcl-2018-directory/web2/${this.photo()}`;
 
     return (
       <LazyLoad offset={100}>
